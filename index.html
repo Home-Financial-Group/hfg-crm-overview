@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HFG CRM — AI-First Platform Overview</title>
+<style>
+  :root { --teal: #01A7A3; --dark-blue: #1D506B; --bg: #F8FAFB; --card: #FFFFFF; --border: #E2E8F0; --text: #1E293B; --muted: #64748B; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  .hero { background: linear-gradient(135deg, var(--dark-blue) 0%, var(--teal) 100%); color: white; padding: 56px 24px 48px; text-align: center; }
+  .hero img, .hero .logo { font-size: 2rem; margin-bottom: 12px; }
+  .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .hero .sub { font-size: 1.05rem; opacity: 0.85; max-width: 600px; margin: 0 auto 28px; }
+  .hero .kpis { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero .kpi { text-align: center; }
+  .hero .kpi-num { font-size: 2rem; font-weight: 800; }
+  .hero .kpi-label { font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+  h2 { font-size: 1.4rem; color: var(--dark-blue); margin: 36px 0 16px; padding-bottom: 6px; border-bottom: 2px solid var(--teal); }
+  h3 { font-size: 1.05rem; color: var(--dark-blue); margin: 20px 0 10px; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card-row { display: flex; align-items: flex-start; gap: 14px; }
+  .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .card p { font-size: 0.88rem; color: var(--muted); }
+  .badge { display: inline-block; font-size: 0.65rem; padding: 2px 8px; border-radius: 99px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-left: 8px; }
+  .badge-live { background: #D1FAE5; color: #065F46; }
+  .badge-ai { background: #EDE9FE; color: #5B21B6; }
+  .badge-soon { background: #FEF3C7; color: #92400E; }
+
+  .asset-tag { display: inline-flex; align-items: center; gap: 3px; background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; border: 1px solid #FCD34D; margin: 2px 2px 2px 0; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .pipeline { display: flex; gap: 0; overflow-x: auto; padding: 12px 0; }
+  .stage { flex: 0 0 auto; text-align: center; }
+  .stage-box { background: var(--card); border: 2px solid var(--teal); border-radius: 10px; padding: 10px 14px; min-width: 110px; font-size: 0.78rem; font-weight: 700; color: var(--dark-blue); }
+  .stage-sub { font-size: 0.65rem; color: var(--muted); margin-top: 3px; }
+  .arrow { display: flex; align-items: center; padding: 0 3px; color: var(--border); font-size: 1.1rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px; }
+  th { text-align: left; padding: 8px 10px; background: var(--dark-blue); color: white; font-weight: 600; font-size: 0.78rem; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: #F0FDFA; }
+
+  .safety { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 14px; padding: 20px; margin-top: 14px; }
+  .safety h4 { color: #065F46; }
+  .safety p { color: #166534; font-size: 0.88rem; }
+
+  .footer { text-align: center; padding: 28px; color: var(--muted); font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
+  .section-intro { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+
+  .highlight { background: linear-gradient(90deg, transparent 0%, #01A7A310 50%, transparent 100%); padding: 16px; border-radius: 12px; margin: 16px 0; border-left: 4px solid var(--teal); }
+  .highlight p { font-size: 0.92rem; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo">Home Financial Group</div>
+  <h1>AI-First CRM Platform</h1>
+  <p class="sub">Every page, every message, every decision — powered by AI. Built on Twenty CRM (open-source, self-hosted, $0/month). No GoHighLevel, no Follow Up Boss, no BusyBee.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-num">22</div><div class="kpi-label">Automation Rules</div></div>
+    <div class="kpi"><div class="kpi-num">41</div><div class="kpi-label">Message Templates</div></div>
+    <div class="kpi"><div class="kpi-num">8</div><div class="kpi-label">AI Features</div></div>
+    <div class="kpi"><div class="kpi-num">8</div><div class="kpi-label">Value-Add Assets</div></div>
+    <div class="kpi"><div class="kpi-num">$0</div><div class="kpi-label">Monthly Cost</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- WHAT MAKES THIS DIFFERENT -->
+  <h2>What Makes This Different</h2>
+  <div class="highlight">
+    <p>This isn't a CRM that happens to have AI bolted on. <strong>AI is the default layer.</strong> Every outbound message is written by Claude using the borrower's full profile. Every page shows AI-generated intelligence. When AI is unavailable, static templates kick in automatically — the system never stops working.</p>
+  </div>
+
+  <!-- AI ON EVERY PAGE -->
+  <h2>AI Intelligence On Every Page</h2>
+  <p class="section-intro">Claude is embedded in every screen of the CRM. Here's what each page does:</p>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #F0FDFA; color: var(--teal);">&#x2600;</div>
+      <div>
+        <h4>Dashboard — Morning Brief <span class="badge badge-ai">AI Sonnet</span></h4>
+        <p>One click generates your daily pipeline intelligence: today's priorities (specific deals by name), closing watch, stale alerts with recommended action type, and a win-of-the-week highlight. Uses real data from all 200+ active deals.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #EDE9FE; color: #8B5CF6;">&#x1F464;</div>
+      <div>
+        <h4>Contact Detail — AI Summary + Message Writer <span class="badge badge-ai">AI Haiku</span></h4>
+        <p><strong>Summary:</strong> Opens with relationship health (GREEN/YELLOW/RED), a 2-sentence snapshot of who they are, the #1 next action, talking points for your next call, and risk flags.<br>
+        <strong>Message Writer:</strong> Pick a purpose (welcome, follow-up, DPA info, rate update, etc.) and Claude writes a personalized SMS or email using their full profile — credit score, loan type, location, stage, everything.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #DBEAFE; color: #3B82F6;">&#x1F4CA;</div>
+      <div>
+        <h4>Deal Detail — AI Deal Review <span class="badge badge-ai">AI Sonnet</span></h4>
+        <p>One-click health check on any deal: GREEN/YELLOW/RED status, specific blockers, 3 concrete next steps with timeline, risk factors, estimated days to close, and confidence level. Works on every deal, not just stale ones.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #FCE7F3; color: #EC4899;">&#x1F4C8;</div>
+      <div>
+        <h4>Reports — Pipeline Analysis <span class="badge badge-ai">AI Sonnet</span></h4>
+        <p>AI reads your numbers and writes the headline: trend direction (UP/FLAT/DOWN), 3-4 data-driven insights, where deals are getting stuck and why, top recommendation for the week, and revenue forecast.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #D1FAE5; color: #10B981;">&#x1F4AC;</div>
+      <div>
+        <h4>Inbox — Smart Reply Drafts <span class="badge badge-soon">Ready</span></h4>
+        <p>When a message comes in, Claude drafts 3 reply options in different tones (professional, friendly, brief). Pick one, edit if needed, send. Component is built and ready — wires in when iMessage/email connects.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon" style="background: #FEF3C7; color: #92400E;">&#x2699;</div>
+      <div>
+        <h4>Automations — AI-Personalized Messages <span class="badge badge-ai">AI Haiku</span></h4>
+        <p>Every outbound borrower message is rewritten by Claude at queue time. A first-time buyer in Homestead gets a completely different welcome than a refi in Boca. If AI is unavailable, the static template sends instead — no message ever gets stuck.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE ASSETS -->
+  <h2>Value-Add Assets We Deliver</h2>
+  <p class="section-intro">Every touchpoint gives the borrower something useful — never just "checking in."</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>&#9733; Mortgage Calculator</h4>
+      <p>Interactive tool at homefg.com/calculator. Linked in 12+ templates across welcome, drip, and win-back sequences.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; First-Time Buyer Guide</h4>
+      <p>Full walkthrough from pre-approval to closing. Sent in welcome emails and DPA sequences.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; Home Wealth Report</h4>
+      <p>Annual email showing equity %, LTV, refi scenarios, cash-out potential, sale proceeds. React Email template, fully designed.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; House Canary Report</h4>
+      <p>Professional home valuation. Auto-triggered as a task on refi pre-approvals and past client anniversaries.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; AI DPA Analysis <span class="badge badge-ai">AI</span></h4>
+      <p>Claude researches county-specific DPA programs (FL Housing, county bonds, FHA/USDA) personalized to borrower's profile.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; AI Refi Savings <span class="badge badge-ai">AI</span></h4>
+      <p>Monthly savings, break-even months, total interest saved, cash-out potential — specific numbers for their loan.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; AI Location Insights <span class="badge badge-ai">AI</span></h4>
+      <p>Neighborhood recs tailored to buyer (schools, commute, vibe). Used to re-engage stale pre-approved buyers.</p>
+    </div>
+    <div class="card">
+      <h4>&#9733; Cash-Out Education <span class="badge badge-ai">AI</span></h4>
+      <p>Positions cash-out as a financial strategy: renovations, debt consolidation, investment properties.</p>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <h2>Automation Across the Pipeline</h2>
+  <p class="section-intro">22 rules fire automatically as deals move through stages. Here's the flow:</p>
+
+  <div class="pipeline">
+    <div class="stage"><div class="stage-box">Contacted</div><div class="stage-sub">2 rules, 7 actions</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">Pre-Approved</div><div class="stage-sub">3 rules, drip sequence</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">Under Contract</div><div class="stage-sub">Doc kickoff + agent update</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">Submitted</div><div class="stage-sub">Appraisal + insurance tasks</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">Conditional</div><div class="stage-sub">Conditions follow-up</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">CTC</div><div class="stage-sub">CTC notifications</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box">Closed</div><div class="stage-sub">Past client setup</div></div>
+  </div>
+
+  <h3>What Fires at Each Stage (Examples)</h3>
+  <table>
+    <tr><th>Stage</th><th>What Happens Automatically</th></tr>
+    <tr><td><strong>Contacted</strong></td><td>AI welcome SMS + email with <span class="asset-tag">Calculator</span> <span class="asset-tag">Buyer Guide</span>, doc follow-up (Day 2), call task (Day 5), education text (Day 7). DPA sequence if tagged first-time-buyer.</td></tr>
+    <tr><td><strong>Pre-Approved</strong></td><td>Congrats email + SMS to borrower, agent notification, bi-weekly house hunt drip with <span class="asset-tag">Calculator</span> and rate snapshots for 8 weeks.</td></tr>
+    <tr><td><strong>Under Contract</strong></td><td>Doc collection task, congrats timeline email, full doc request checklist, agent update email.</td></tr>
+    <tr><td><strong>Clear to Close</strong></td><td>CTC email + text to borrower, agent CTC notification, closing prep task.</td></tr>
+    <tr><td><strong>Closed</strong></td><td>Welcome home email, agent text, 7-day review request, 30-day referral ask, 6-month homestead reminder, 1-year <span class="asset-tag">Home Wealth Report</span>.</td></tr>
+    <tr><td><strong>Refi</strong></td><td><span class="asset-tag">AI Refi Analysis</span> with real numbers, <span class="asset-tag">House Canary</span> value report offer, cash-out education if tagged.</td></tr>
+    <tr><td><strong>Lost/Win-Back</strong></td><td>30-day value email with <span class="asset-tag">Calculator</span>, 60-day rate text, 90-day soft check-in. "No hard feelings" text for competitor losses.</td></tr>
+    <tr><td><strong>Stale Deals</strong></td><td>AI auto-detects: new leads stuck 3+ days, conditions stale 5+ days, pre-approved 14+ days, LIP 7+ days. Generates follow-up strategy + location insights.</td></tr>
+  </table>
+
+  <!-- AI RESEARCH -->
+  <h2>5 AI Research Types</h2>
+  <p class="section-intro">Claude acts as a research analyst — gathering borrower context, running analysis, creating deal notes + draft messages for review.</p>
+
+  <table>
+    <tr><th>Research Type</th><th>What It Does</th><th>When It Fires</th></tr>
+    <tr><td><strong>DPA Analysis</strong></td><td>County-specific DPA programs, eligibility, amounts, income limits, next steps</td><td>First-time buyer tagged</td></tr>
+    <tr><td><strong>Location Insights</strong></td><td>Neighborhood recs tailored to buyer profile (schools, commute, safety, vibe)</td><td>Pre-approved 14+ days stale</td></tr>
+    <tr><td><strong>Deal Review</strong></td><td>GREEN/YELLOW/RED health, blockers, next actions, risk factors</td><td>Weekly for LIP 7+ days</td></tr>
+    <tr><td><strong>Refi Analysis</strong></td><td>Monthly savings, break-even, total interest saved, cash-out potential</td><td>Refi pre-approval</td></tr>
+    <tr><td><strong>Follow-Up Strategy</strong></td><td>Diagnoses stall reason, recommends approach + draft message</td><td>Stale new leads + pre-approved</td></tr>
+  </table>
+
+  <!-- REALTOR CENTRAL -->
+  <h2>Realtor Central</h2>
+  <p class="section-intro">Full partner management system for tracking agent relationships, referral deals, and commission.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>Pipeline View</h4>
+      <p>Kanban-style board showing realtors by relationship stage: New Prospect, In Conversation, Active Partner, Top Partner.</p>
+    </div>
+    <div class="card">
+      <h4>Directory + Search</h4>
+      <p>Sortable, searchable table of all realtor contacts with email list status, brokerage, and area.</p>
+    </div>
+    <div class="card">
+      <h4>Referral Activity</h4>
+      <p>Expandable deal cards showing referral deals with inline editing for agent, property, loan type.</p>
+    </div>
+    <div class="card">
+      <h4>Commission Tracking</h4>
+      <p>Total commission, closed vs. pipeline, monthly chart, deal-level breakdown.</p>
+    </div>
+    <div class="card">
+      <h4>AI Prospect Intel <span class="badge badge-ai">AI</span></h4>
+      <p>Outreach strategy, talking points, and relationship insights for each realtor prospect. Cached 24h.</p>
+    </div>
+    <div class="card">
+      <h4>Active Partners Analytics</h4>
+      <p>Partners by stage chart, by area chart, paginated table with sortable columns.</p>
+    </div>
+  </div>
+
+  <!-- ROLE-BASED ACCESS -->
+  <h2>Role-Based Access</h2>
+  <table>
+    <tr><th>Feature</th><th>Admin (Medardo A.)</th><th>Agent (Medardo F.)</th></tr>
+    <tr><td>Dashboard + Morning Brief</td><td>Full access</td><td>Actions view only</td></tr>
+    <tr><td>People (Contacts)</td><td>Full access</td><td>Full access</td></tr>
+    <tr><td>Deals (Pipeline)</td><td>Full access</td><td>Full access</td></tr>
+    <tr><td>Inbox</td><td>Full access</td><td>Full access</td></tr>
+    <tr><td>Calendar (O365)</td><td>Full access</td><td>Full access</td></tr>
+    <tr><td>Reports + AI Insights</td><td>Full access</td><td>Full access</td></tr>
+    <tr><td>Settings</td><td>Full (users, pipeline, integrations)</td><td>Smart Lists only</td></tr>
+    <tr><td>Automations</td><td>Full access</td><td>Not visible</td></tr>
+    <tr><td>Realtor Central</td><td>Full access</td><td>Not visible</td></tr>
+    <tr><td>Email Campaigns</td><td>Full access</td><td>Not visible</td></tr>
+  </table>
+
+  <!-- SAFETY -->
+  <h2>AI Safety Net</h2>
+  <div class="safety">
+    <h4>AI never blocks the CRM</h4>
+    <p style="margin-top: 8px;">If Claude goes down (rate limits, outages, etc.), the system keeps working:</p>
+    <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.88rem; color: #166534;">
+      <li><strong>Circuit breaker:</strong> After 3 failures, AI skips for 5 minutes then auto-recovers</li>
+      <li><strong>Tight timeouts:</strong> Haiku 30s, Sonnet 60s (not 3 minutes)</li>
+      <li><strong>Static fallback:</strong> 41 pre-written templates always work as backup</li>
+      <li><strong>Non-blocking:</strong> Automations fire instantly; AI personalization is best-effort</li>
+      <li><strong>Health endpoint:</strong> /api/ai/status shows breaker state at any time</li>
+    </ul>
+  </div>
+
+  <!-- TECH STACK -->
+  <h2>Tech Stack</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h4>Frontend</h4>
+      <p>Next.js 16 + React 19 + TypeScript + Tailwind v4. dnd-kit for Kanban, recharts for charts, lucide-react icons.</p>
+    </div>
+    <div class="card">
+      <h4>Backend CRM</h4>
+      <p>Twenty CRM (open-source, self-hosted Docker). 4,625 contacts, 283 deals, 23 stages, 78-tool MCP server.</p>
+    </div>
+    <div class="card">
+      <h4>AI Engine</h4>
+      <p>Claude CLI via Pro Max OAuth ($0 per call). Haiku for speed, Sonnet for depth. No API tokens needed.</p>
+    </div>
+    <div class="card">
+      <h4>Hosting</h4>
+      <p>Mac Mini via Cloudflare Tunnel at crm.homerfg.com (port 3004). Twenty Docker at localhost:3000.</p>
+    </div>
+  </div>
+
+  <!-- COST -->
+  <div class="highlight">
+    <p><strong>Total monthly cost: $0.</strong> Twenty CRM is open-source (self-hosted). Claude runs on Pro Max (flat subscription, no per-call billing). Hosted on our own Mac Mini. No GHL ($297/mo), no FUB ($69/mo), no BusyBee ($149/mo).</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Home Financial Group &bull; AI-First CRM Platform &bull; Built with Claude Code &bull; March 2026
+</div>
+
+</body>
+</html>
