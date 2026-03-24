@@ -217,27 +217,41 @@
   </div>
 
   <!-- PIPELINE -->
-  <h2>Automation Across the Pipeline</h2>
-  <p class="section-intro">22 rules fire automatically as deals move through stages. Here's the flow:</p>
+  <h2>Automation by Pipeline</h2>
+  <p class="section-intro">Matches exactly what you see in the CRM. 3 pipeline tabs + Nurture, each with their stages in order. Click any stage to see the full automation flow.</p>
 
-  <div class="pipeline">
-    <div class="stage"><div class="stage-box">Contacted</div><div class="stage-sub">2 rules, 7 actions</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">Pre-Approved</div><div class="stage-sub">3 rules, drip sequence</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">Under Contract</div><div class="stage-sub">Doc kickoff + agent update</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">Submitted</div><div class="stage-sub">Appraisal + insurance tasks</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">Conditional</div><div class="stage-sub">Conditions follow-up</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">CTC</div><div class="stage-sub">CTC notifications</div></div>
-    <div class="arrow">&rarr;</div>
-    <div class="stage"><div class="stage-box">Closed</div><div class="stage-sub">Past client setup</div></div>
+  <!-- Pipeline Tab Selector -->
+  <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px;" id="pipeline-tabs">
+    <button onclick="showPipeline('purchase')" class="ptab ptab-active" id="ptab-purchase">Purchase</button>
+    <button onclick="showPipeline('refinance')" class="ptab" id="ptab-refinance">Refinance</button>
+    <button onclick="showPipeline('lip')" class="ptab" id="ptab-lip">Loans in Process</button>
+    <button onclick="showPipeline('nurture')" class="ptab" id="ptab-nurture">Lost / Nurture</button>
   </div>
 
-  <h3>Detailed Flow Per Stage</h3>
-  <p class="section-intro">Click any stage to see exactly what fires, when, and what value asset is delivered. Every message is AI-personalized to the borrower's profile.</p>
+  <style>
+    .ptab { padding: 10px 20px; font-size: 0.85rem; font-weight: 600; border: none; background: none; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+    .ptab-active { color: var(--teal); border-bottom-color: var(--teal); }
+    .pipeline-section { display: none; }
+    .pipeline-section.active { display: block; }
+  </style>
+
+  <!-- ============ PURCHASE PIPELINE ============ -->
+  <div class="pipeline-section active" id="pipe-purchase">
+
+  <h3 style="margin-top:0;">Purchase Pipeline</h3>
+  <div class="pipeline">
+    <div class="stage"><div class="stage-box" style="border-color:#3B82F6;">New Lead</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#38BDF8;">Contacted</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#A855F7;">Working Pre-Approval</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#01A7A3;">Pre-Approved</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#10B981;">Under Contract</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#3B82F6;">Submitted</div></div>
+  </div>
 
   <!-- CONTACTED -->
   <div class="stage-card">
@@ -294,110 +308,206 @@
     </div>
   </div>
 
-  <!-- REFI -->
+  <!-- Under Contract (Purchase) -->
   <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-refi">Refi</span><h4>Refi Pre-Approved — AI Value Package</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Refi Savings Analysis</div><div class="fd">Claude calculates monthly savings, break-even, total interest saved <span class="asset-tag">AI Refi Analysis</span></div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Value Report Offer</div><div class="fd">"Want me to pull a House Canary report on your home?" <span class="asset-tag">House Canary</span></div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Pull House Canary Report</div><div class="fd">Task for LO: generate and send home value report</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Refi Package Sent</div><div class="fd">Records value package delivery</div></div></div>
-      </div>
-    </div>
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-purchase">Under Contract</span><h4>Kickoff Checklist</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Doc Collection</div><div class="fd">Comprehensive document checklist assigned to LO</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Congrats + Timeline</div><div class="fd">Borrower email with closing timeline and next steps</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Doc Request</div><div class="fd">Full checklist: 2yr W-2s, 2mo bank statements, ID, etc.</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Agent Update</div><div class="fd">Referring agent notified: deal is under contract</div></div></div>
+    </div></div>
   </div>
 
-  <!-- UNDER CONTRACT -->
-  <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-purchase">Purchase</span><h4>Under Contract — Kickoff Checklist</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Doc Collection</div><div class="fd">Comprehensive document checklist assigned to LO</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Congrats + Timeline</div><div class="fd">Borrower email with closing timeline and next steps</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Doc Request</div><div class="fd">Full checklist: 2yr W-2s, 2mo bank statements, ID, etc.</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Agent Update</div><div class="fd">Referring agent notified: deal is under contract with loan status</div></div></div>
-      </div>
-    </div>
+  <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 4px;"><em>When a deal reaches Submitted, it moves to the <strong>Loans in Process</strong> pipeline tab &rarr;</em></p>
+
+  </div><!-- END PURCHASE -->
+
+  <!-- ============ REFINANCE PIPELINE ============ -->
+  <div class="pipeline-section" id="pipe-refinance">
+
+  <h3 style="margin-top:0;">Refinance Pipeline</h3>
+  <p class="section-intro">Same stages as Purchase, plus refi-specific automations with AI savings analysis and House Canary reports.</p>
+  <div class="pipeline">
+    <div class="stage"><div class="stage-box" style="border-color:#3B82F6;">New Lead</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#38BDF8;">Contacted</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#A855F7;">Working Pre-Approval</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#01A7A3;">Pre-Approved</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#10B981;">Under Contract</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#3B82F6;">Submitted</div></div>
   </div>
 
-  <!-- PROCESSING -->
+  <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px;">All Purchase automations fire here too (welcome, pre-approval, drip, DPA). These are <strong>refi-specific extras</strong>:</p>
+
+  <!-- Refi Pre-Approved -->
   <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-purchase">Processing</span><h4>Submitted &rarr; Conditional &rarr; CTC</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Appraisal Order</div><div class="fd">Submitted stage — appraisal order task</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Insurance Verification</div><div class="fd">Submitted stage — verify homeowners insurance</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Clear Conditions</div><div class="fd">Conditional Approval — conditions clearance task</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Status Update</div><div class="fd">Conditional Approval — borrower update on progress</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> CTC Notification</div><div class="fd">Clear to Close — borrower + agent CTC emails</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> CTC Text</div><div class="fd">Clear to Close — quick congrats text to borrower</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Closing Prep</div><div class="fd">Clear to Close — prepare closing documents task</div></div></div>
-      </div>
-    </div>
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-refi">Pre-Approved</span><h4>Refi Value Package</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Refi Savings Analysis</div><div class="fd">Claude calculates monthly savings, break-even, total interest saved <span class="asset-tag">AI Refi Analysis</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Value Report Offer</div><div class="fd">"Want me to pull a House Canary report on your home?" <span class="asset-tag">House Canary</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Pull House Canary Report</div><div class="fd">Task for LO: generate and send home value report</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Refi Package Sent</div><div class="fd">Records value package delivery</div></div></div>
+    </div></div>
   </div>
 
-  <!-- CLOSED -->
+  <!-- Cash-Out Education -->
   <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-purchase">Closed</span><h4>Closed — Post-Closing + Past Client Setup</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Welcome Home!</div><div class="fd">Congratulations email + homestead exemption reminder</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Agent "Closed!" Text</div><div class="fd">Quick text to referring agent</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Request Review</div><div class="fd">Day 7 — Ask for Google/Zillow review</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Referral Ask</div><div class="fd">Day 30 — "Know anyone looking to buy?" — soft referral request</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Homestead Exemption</div><div class="fd">Month 6 — Reminder to file homestead exemption (Florida)</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Annual Value Report</div><div class="fd">Year 1 — Full home wealth report <span class="asset-tag">Home Wealth Report</span></div></div></div>
-      </div>
-    </div>
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-refi">Tag: cash-out</span><h4>Cash-Out Refi Education</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Cash-Out Education</div><div class="fd">Renovations, debt consolidation, investment properties <span class="asset-tag">Cash-Out Education</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Education Sent</div><div class="fd">Records cash-out education delivered</div></div></div>
+    </div></div>
   </div>
 
-  <!-- WIN-BACK -->
-  <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-lost">Win-Back</span><h4>Lost — Re-engagement Sequences</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> No Hard Feelings</div><div class="fd">Day 1 (competitor loss) — friendly, no pressure text</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Market Value Email</div><div class="fd">Day 30 — Rate update + market conditions <span class="asset-tag">Calculator</span></div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Rate Drop Text</div><div class="fd">Day 60 — Quick rate snapshot if rates have moved</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Soft Check-In</div><div class="fd">Day 90 — "How's everything going?" — no pressure</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Seasonal Email</div><div class="fd">Day 90 — Spring/fall market update</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Quarterly Review</div><div class="fd">Day 90 — Review task for LO to reassess lead</div></div></div>
-      </div>
-    </div>
+  </div><!-- END REFINANCE -->
+
+  <!-- ============ LOANS IN PROCESS ============ -->
+  <div class="pipeline-section" id="pipe-lip">
+
+  <h3 style="margin-top:0;">Loans in Process (LIP)</h3>
+  <p class="section-intro">Operations pipeline — deals move here after Submitted. This is where loans get processed, approved, and closed.</p>
+  <div class="pipeline">
+    <div class="stage"><div class="stage-box" style="border-color:#3B82F6;">Submitted</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#F59E0B;">Conditional Approval</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#10B981;">Clear to Close</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="stage-box" style="border-color:#10B981;">Closed</div></div>
   </div>
 
-  <!-- STALE DEALS -->
+  <!-- Submitted -->
   <div class="stage-card">
-    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')">
-      <div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-stale">Auto-Scan</span><h4>Stale Deal Detection (4 Rules)</h4></div>
-      <span class="toggle-arrow">&#9660;</span>
-    </div>
-    <div class="stage-body" style="display:none;">
-      <div class="flow">
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> New Lead 3+ Days</div><div class="fd">AI diagnoses stall reason + drafts follow-up message <span class="ch ch-notify">NOTIFY LO</span></div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Conditions 5+ Days</div><div class="fd">Conditions stale — reminder task + borrower SMS nudge</div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Pre-Approved 14+ Days</div><div class="fd">AI follow-up strategy + AI neighborhood insights to re-engage <span class="asset-tag">AI Location Insights</span></div></div></div>
-        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> LIP 7+ Days (Weekly)</div><div class="fd">AI deal health review — GREEN/YELLOW/RED with next actions <span class="asset-tag">AI Deal Review</span></div></div></div>
-      </div>
-    </div>
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#3B82F6;color:white;">Submitted</span><h4>Processing Kickoff</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Order Appraisal</div><div class="fd">Appraisal order task assigned to LO</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Verify Insurance</div><div class="fd">Verify homeowners insurance is in place</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Processing Started</div><div class="fd">Records loan submitted to processing</div></div></div>
+    </div></div>
   </div>
+
+  <!-- Conditional Approval -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#F59E0B;color:white;">Conditional</span><h4>Conditions Follow-Up</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Clear Conditions</div><div class="fd">Conditions clearance task with specific items needed</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Borrower Status Update</div><div class="fd">"Great news — you have conditional approval! Here's what we still need..."</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Conditional Note</div><div class="fd">Records conditional approval milestone</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Clear to Close -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#10B981;color:white;">Clear to Close</span><h4>Final Steps</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> CTC Email to Borrower</div><div class="fd">"You're clear to close!" — closing process, dates, what to bring</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> CTC Text</div><div class="fd">Quick congrats text to borrower</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Agent CTC Notification</div><div class="fd">Referring agent notified: clear to close</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Closing Prep</div><div class="fd">Prepare closing documents and schedule closing</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Closed -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#10B981;color:white;">Closed</span><h4>Post-Closing + Past Client Setup</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Welcome Home!</div><div class="fd">Congratulations email + homestead exemption reminder</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Agent "Closed!" Text</div><div class="fd">Quick text to referring agent</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Request Review</div><div class="fd">Day 7 — Ask for Google/Zillow review</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Referral Ask</div><div class="fd">Day 30 — "Know anyone looking to buy?"</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Homestead Exemption</div><div class="fd">Month 6 — File homestead exemption reminder (Florida)</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Annual Value Report</div><div class="fd">Year 1 — Full home wealth report <span class="asset-tag">Home Wealth Report</span></div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Stale Deal Detection -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-stale">Auto-Scan</span><h4>Stale Deal Detection (runs across all LIP stages)</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Conditions 5+ Days Stale</div><div class="fd">Conditions reminder task + borrower SMS nudge</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> LIP 7+ Days (Weekly)</div><div class="fd">AI deal health review — GREEN/YELLOW/RED with next actions <span class="asset-tag">AI Deal Review</span></div></div></div>
+    </div></div>
+  </div>
+
+  </div><!-- END LIP -->
+
+  <!-- ============ LOST / NURTURE ============ -->
+  <div class="pipeline-section" id="pipe-nurture">
+
+  <h3 style="margin-top:0;">Lost / Nurture</h3>
+  <p class="section-intro">Deals that didn't close get sorted into nurture columns. Automations keep them warm and try to win them back.</p>
+  <div class="pipeline">
+    <div class="stage"><div class="stage-box" style="border-color:#F97316;">Credit Nurture</div></div>
+    <div class="arrow">|</div>
+    <div class="stage"><div class="stage-box" style="border-color:#F59E0B;">Not Ready</div></div>
+    <div class="arrow">|</div>
+    <div class="stage"><div class="stage-box" style="border-color:#A855F7;">Future Opp / Win Back</div></div>
+    <div class="arrow">|</div>
+    <div class="stage"><div class="stage-box" style="border-color:#94A3B8;">Lost / Parked</div></div>
+  </div>
+
+  <!-- Win-Back -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-lost">Win-Back</span><h4>Re-engagement Sequence (Lost to Competitor)</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> No Hard Feelings</div><div class="fd">Day 1 — friendly, no pressure text</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Market Value Email</div><div class="fd">Day 30 — Rate update + market conditions <span class="asset-tag">Calculator</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Rate Drop Text</div><div class="fd">Day 60 — Quick rate snapshot</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Soft Check-In</div><div class="fd">Day 90 — "How's everything going?"</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Seasonal Email</div><div class="fd">Day 90 — Spring/fall market update</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Quarterly Review</div><div class="fd">Day 90 — LO reassess: worth re-engaging?</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Credit Nurture -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#F97316;color:white;">Credit</span><h4>Credit Nurture — Keep Warm Drip</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Credit Check-In</div><div class="fd">Day 30 — "How's the credit improvement going?" <span class="asset-tag">Free Credit Review</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> 30-Day Review</div><div class="fd">Day 30 — Review credit progress task</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> 60-Day Review</div><div class="fd">Day 60 — Follow-up credit review</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> 90-Day Review</div><div class="fd">Day 90 — Soft pull offer, re-evaluate eligibility <span class="asset-tag">Free Credit Review</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-note">NOTE</span> Nurture Log</div><div class="fd">Records credit nurture sequence started</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Not Ready -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag" style="background:#F59E0B;color:white;">Not Ready</span><h4>Keep Warm Drip</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-sms">SMS</span> Check-In</div><div class="fd">Day 30 — Casual touch base</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Value Email</div><div class="fd">Day 60 — Market update + tools <span class="asset-tag">Calculator</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-email">EMAIL</span> Seasonal Email</div><div class="fd">Day 90 — Seasonal market content</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-task">TASK</span> Quarterly Review</div><div class="fd">Day 90 — Reassess readiness</div></div></div>
+    </div></div>
+  </div>
+
+  <!-- Stale Detection (Sales Pipeline) -->
+  <div class="stage-card">
+    <div class="stage-header" onclick="this.parentElement.classList.toggle('open')"><div style="display:flex;align-items:center;gap:8px;"><span class="stage-tag stage-tag-stale">Auto-Scan</span><h4>Stale Deal Detection (fires across all pipelines)</h4></div><span class="toggle-arrow">&#9660;</span></div>
+    <div class="stage-body" style="display:none;"><div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> New Lead 3+ Days</div><div class="fd">AI diagnoses stall reason + drafts follow-up <span class="ch ch-notify">NOTIFY LO</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Pre-Approved 14+ Days</div><div class="fd">AI follow-up strategy + neighborhood insights <span class="asset-tag">AI Location Insights</span></div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot on"></div><div class="flow-bar"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> Conditions 5+ Days</div><div class="fd">Conditions reminder task + borrower SMS nudge</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div></div><div class="flow-body"><div class="fl"><span class="ch ch-ai">AI</span> LIP 7+ Days (Weekly)</div><div class="fd">Deal health review — GREEN/YELLOW/RED <span class="asset-tag">AI Deal Review</span></div></div></div>
+    </div></div>
+  </div>
+
+  </div><!-- END NURTURE -->
 
   <script>
+  // Pipeline tab switching
+  function showPipeline(id) {
+    document.querySelectorAll('.pipeline-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('ptab-active'));
+    document.getElementById('pipe-' + id).classList.add('active');
+    document.getElementById('ptab-' + id).classList.add('ptab-active');
+  }
   // Toggle stage card open/close
   document.querySelectorAll('.stage-card').forEach(card => {
     const body = card.querySelector('.stage-body');
